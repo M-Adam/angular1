@@ -8,8 +8,22 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <hr>
             <app-success-alert></app-success-alert>
             <app-warning-alert></app-warning-alert>
+            <hr>
+            <input class="form-control" [(ngModel)]="username">
+            <p>{{ username }}</p>
+            <button class="btn btn-success" [disabled]="username === '' || username == null" (click) = "onUsernameButtonClick()">Username Reset</button>
+            <hr>
+            <button (click)="onParagraphToggle()" class="btn btn-warning">Display Details</button>
+            <p *ngIf="displayParagraph">Secret password = tuna</p>
+            <p *ngIf="clicks.length > 0">Clicks this far:</p>
+            <p *ngFor="let click of clicks; let i = index" 
+            [ngStyle]="{'backgroundColor': i >= 5 ? 'blue' : 'black'}"
+            [ngClass]="{'futureLogItem': 'i >= 5'}">
+                {{ click.numberOfClick + ' - ' + click.timeStamp }}
+            </p>
         </div>
     </div>
 </div>
